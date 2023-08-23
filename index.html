@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <!-- Restoran Menüsü -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rubik:wght@300;700&display=swap" rel="stylesheet">
+
+    <div class="container">
+        <div class="header">
+            <div class="title">Eles Restoran Menüsü</div>
+        </div>
+        <div class="indicators">
+            <div id="i1">
+                <div class="navi-indicator" id="ni1"></div>
+            </div>
+            <div id="i2">
+                <div class="navi-indicator" id="ni2"></div>
+            </div>
+            <div id="i3">
+                <div class="navi-indicator" id="ni3"></div>
+            </div>
+            <div id="i4">
+                <div class="navi-indicator" id="ni4"></div>
+            </div>
+        </div>
+        <div class="navi">
+            <div class="navi-item1">
+                <button class="nav-button" id="startersbutton">
+                    <div class="navi-icon"><i class="fas fa-seedling"></i></div>
+                    <div class="navi-text">Başlangıçlar</div>
+                </button>
+            </div>
+            <div class="navi-item2">
+                <button class="nav-button" id="mainsbutton">
+                    <div class="navi-icon"><i class="fas fa-pizza-slice"></i></div>
+                    <div class="navi-text">Ana Yemek</div>
+                </button>
+            </div>
+            <div class="navi-item3">
+                <button class="nav-button" id="dessertsbutton">
+                    <div class="navi-icon"><i class="fas fa-ice-cream"></i></div>
+                    <div class="navi-text">Tatlılar</div>
+                </button>
+            </div>
+            <div class="navi-item4">
+                <button class="nav-button" id="drinksbutton">
+                    <div class="navi-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="navi-text">İçecekler</div>
+                </button>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menu-separator">Ayracı</div>
+            <div class="menu-item">
+                <div class="menu-item-name">Yemek</div>
+                <div class="menu-item-description">Yemek yada yada</div>
+                <div class="menu-item-price">17.50</div>
+            </div>
+            <div class="menu-separator">Ayracı</div>
+            <div class="drink-item">
+                <div class="drink-item-name">İçecek</div>
+                <div class="drink-item-description">3.3dl</div>
+                <div class="drink-item-price">4.50</div>
+            </div>
+        </div>
+    </div>
+
+	<script>
+		//////Restaurant Menu
+	//////////////////////
+	const starters = JSON.parse(
+		"[" +
+			'{ "type":"separator", "description":"Ana başııl" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"separator", "description":"Ana başlık" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"food", "name":"Alt başlık yanı yemek ısmı", "description":"Açıklama yemek için", "price":"16.00" } ]'
+	);
+	const mains = JSON.parse(
+		"[" +
+			'{ "type":"separator", "description":"Ana yemekler bu alanda" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"separator", "description":"Ana başlık - 2" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"food", "name":"Alt başlık yanı yemek ısmı", "description":"Açıklama yemek için", "price":"16.00" } ]'
+	);
+	const desserts = JSON.parse(
+		"[" +
+			'{ "type":"separator", "description":"Tatlılar Ana başlık burası" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"separator", "description":"Ana başlık" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"food", "name":"Alt başlık yanı yemek ısmı", "description":"Açıklama yemek için", "price":"16.00" } ]'
+	);
+	const drinks = JSON.parse(
+		"[" +
+			'{ "type":"separator", "description":"İçecekler Ana başlık burası" },' +
+			'{ "type":"separator", "description":"Soğuk İçecekler" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"separator", "description":"Sıcak İçecekler" },' +
+			'{ "type":"food", "name":"Alt başlık1", "description":"yemek açıklaması", "price":"12.00" },' +
+			'{ "type":"food", "name":"Alt başlık2", "description":"Yemek açıklaması 2", "price":"10.50" },' +
+			'{ "type":"food", "name":"Alt başlık yanı yemek ısmı", "description":"Açıklama yemek için", "price":"16.00" } ]'
+	);
+	
+	let sl = 0;
+	
+	let startersbutton = document.getElementById("startersbutton");
+	let mainsbutton = document.getElementById("mainsbutton");
+	let dessertsbutton = document.getElementById("dessertsbutton");
+	let drinksbutton = document.getElementById("drinksbutton");
+	
+	let ni1 = document.getElementById("ni1");
+	let ni2 = document.getElementById("ni2");
+	let ni3 = document.getElementById("ni3");
+	let ni4 = document.getElementById("ni4");
+	
+	startersbutton.addEventListener("click", (e) => {
+		setIndicator(0);
+		populateItems(starters);
+	});
+	mainsbutton.addEventListener("click", (e) => {
+		setIndicator(1);
+		populateItems(mains);
+	});
+	dessertsbutton.addEventListener("click", (e) => {
+		setIndicator(2);
+		populateItems(desserts);
+	});
+	drinksbutton.addEventListener("click", (e) => {
+		setIndicator(3);
+		populateItems(drinks);
+	});
+	
+	function populateItems(items) {
+		let menu = document.querySelector(".menu");
+		menu.innerHTML = "";
+		for (i = 0; i < items.length; i++) {
+			if (items[i].type === "separator") {
+				let menuitem = document.createElement("div");
+				menuitem.setAttribute("class", "menu-separator");
+				menuitem.innerHTML = items[i].description;
+				menu.appendChild(menuitem);
+			}
+			if (items[i].type === "food") {
+				let menuitem = document.createElement("div");
+				let menuitemname = document.createElement("div");
+				let menuitemdesc = document.createElement("div");
+				let menuitemprize = document.createElement("div");
+				menuitem.setAttribute("class", "menu-item");
+				menuitemname.setAttribute("class", "menu-item-name");
+				menuitemdesc.setAttribute("class", "menu-item-description");
+				menuitemprize.setAttribute("class", "menu-item-price");
+	
+				menuitemname.innerHTML = items[i].name;
+				menuitemdesc.innerHTML = items[i].description;
+				menuitemprize.innerHTML = items[i].price;
+	
+				menuitem.appendChild(menuitemname);
+				menuitem.appendChild(menuitemdesc);
+				menuitem.appendChild(menuitemprize);
+				menu.appendChild(menuitem);
+			}
+			if (items[i].type === "drink") {
+				let drinkitem = document.createElement("div");
+				let drinkitemname = document.createElement("div");
+				let drinkitemdesc = document.createElement("div");
+				let drinkitemprize = document.createElement("div");
+				drinkitem.setAttribute("class", "drink-item");
+				drinkitemname.setAttribute("class", "drink-item-name");
+				drinkitemdesc.setAttribute("class", "drink-item-description");
+				drinkitemprize.setAttribute("class", "drink-item-price");
+	
+				drinkitemname.innerHTML = items[i].name;
+				drinkitemdesc.innerHTML = items[i].description;
+				drinkitemprize.innerHTML = items[i].price;
+	
+				drinkitem.appendChild(drinkitemname);
+				drinkitem.appendChild(drinkitemdesc);
+				drinkitem.appendChild(drinkitemprize);
+				menu.appendChild(drinkitem);
+			}
+		}
+	}
+	function setIndicator(sel) {
+		sl = sel;
+		let vp = "";
+		if (window.innerWidth < 800) {
+			vp = "60px";
+		} else {
+			vp = "85%";
+		}
+		let elems = [ni1, ni2, ni3, ni4];
+		for (i = 0; i < elems.length; i++) {
+			if (i === sel) {
+				elems[i].style.width = vp;
+				elems[i].style.boxShadow = "2px 2px 10px 2px var(--icolor" + (i + 1) + ")";
+			} else {
+				elems[i].style.width = "0";
+				elems[i].style.boxShadow = "none";
+			}
+		}
+	}
+	
+	window.addEventListener("resize", (e) => {
+		setIndicator(sl);
+	});
+	
+	//default runs
+	setIndicator(sl);
+	populateItems(starters);
+	
+	</script>
+</body>
+</html>
+
+
+
+
